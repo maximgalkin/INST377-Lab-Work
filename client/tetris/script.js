@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid');
   let squares = Array.from(document.querySelectorAll('.grid div'));
-  const ScoreDisplay = document.querySelector('#score');
-  const StartBtn = document.querySelector('#start-button');
+  const scoreDisplay = document.querySelector('#score');
+  const startBtn = document.querySelector('#start-button');
   let nextRandom = 0
+  let timerId
 
   const width = 10;
 
@@ -69,21 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  draw();
+ 
 
   //move down 
-  timerId = setInterval(moveDown, 1000)
+  //timerId = setInterval(moveDown, 1000)
 
   //assing functinos to KeyCodes
   function control(e) {
     if(e.keyCode === 37) {
       moveLeft()
     } else if (e.keyCode === 38) {
-        rotate()
+      rotate()
     } else if (e.keyCode === 39) {
-        moveRight()
+      moveRight()
     } else if (e.keyCode === 40) {
-        moveDown()
+      moveDown()
     }
   }
   document.addEventListener('keyup', control)
@@ -177,5 +178,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //add functionality to button
+  startBtn.addEventListener('click', () => {
+    if (timerId) {
+      clearInterval(timerId)
+      timerId = null
+    } else {
+      draw()
+      timerId = setInterval(moveDown, 1000)
+      nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+      displayShape()
+    }
+  })
+
+  //add score
 
 })
