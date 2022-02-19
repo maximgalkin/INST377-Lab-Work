@@ -69,4 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   draw();
+
+  //move down 
+  timerId = setInterval(moveDown, 1000)
+  
+  function moveDown() {
+    undraw()
+    currentPosition += width
+    draw()
+  }
 })
