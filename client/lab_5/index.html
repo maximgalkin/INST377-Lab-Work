@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <title>Speaker Submission</title>
+    <a href='https://bulma.io/videos/'>Bulma</a>
+    <link rel='stylesheet' href='styles.css' />
+</head>
+
+<body>
+    <div class='heading'>
+        <h1>Maxim Galkin Lab 5</h1>
+    </div>
+    <div class='container'>
+        <header>
+            <form action='https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json' method='get' class='speaker-form'>
+                <div class='form-row'>
+                    <label for='full-name'>First Name</label>
+                    <input id='full-name' name='full-name' type='text' />
+                </div>
+
+                <div class='form-row'>
+                    <label for='food-preference'>Food Preference</label>
+                    <input id='ood-preference' name='ood-preference' type='text' />
+                </div>
+
+                <fieldset class='legacy-form-row'>
+                    <legend>Veggie or Vegan?</legend>
+                    <label for='talk-type-1' class='radio-label'>Yes</label>
+                    <input id='talk-type-1' name='talk-type' type='radio' value='yes' />
+                    <label for='talk-type-2' class='radio-label'>No</label>
+
+                    <input id='talk-type-2' name='talk-type' type='radio' value='no' />
+
+                </fieldset>
+
+                <div class='form-row'>
+                    <button>Submit</button>
+                </div>
+            </form>
+            <div class='future'>
+                This is going to be something in two weeks
+            </div>
+        </header>
+    </div>
+    <script src='script.js'></script>
+</body>
+
+</html>
