@@ -19,6 +19,16 @@ function dataHandler(array) {
   return restos;
 }
 
+function createHtmlList(collection) {
+  console.log(collection);
+  const targetList = doocument.querySelector('.resto-list');
+  targetList.innerHTML = '';
+  collection.forEach((item) => {
+    const injectThisItem = `<li>${item.name}</li>`;
+    targetList.innerHTML += injectThisItem;
+  });
+}
+
 async function mainEvent() { // the async keyword means we can make API requests
   console.log('script loaded');
   const form = document.querySelector('.main_form');
@@ -27,7 +37,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'); // This accesses some data from our API
   const arrayFromJson = await results.json(); // This changes it into data we can use - an object
   console.log(arrayFromJson);
-  if (arrayFromJson.data.length > 0) {
+  if (arrayFromJson.length > 0) {
     submit.style.display = 'block';
     form.addEventListener('submit', async (submitEvent) => { // async has to be declared all the way to get an await
       submitEvent.preventDefault(); // This prevents your page from refreshing!
@@ -36,6 +46,7 @@ async function mainEvent() { // the async keyword means we can make API requests
       // arrayFromJson.data - we're accessing a key called 'data' on the returned object
       // it contains all 1,000 records we need
       const restoArray = dataHandler(arrayFromJson.data);
+      createHtmlList(restoArray);
     });
   }
 }
