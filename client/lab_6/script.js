@@ -21,7 +21,7 @@ function dataHandler(array) {
 
 function createHtmlList(collection) {
   console.log(collection);
-  const targetList = doocument.querySelector('.resto-list');
+  const targetList = document.querySelector('#resto-list');
   targetList.innerHTML = '';
   collection.forEach((item) => {
     const injectThisItem = `<li>${item.name}</li>`;
@@ -45,11 +45,11 @@ async function mainEvent() { // the async keyword means we can make API requests
       // console.table(arrayFromJson.data); // this is called "dot notation"
       // arrayFromJson.data - we're accessing a key called 'data' on the returned object
       // it contains all 1,000 records we need
-      const restoArray = dataHandler(arrayFromJson.data);
+      const restoArray = dataHandler(arrayFromJson);
       createHtmlList(restoArray);
     });
   }
 }
 
 // this actually runs first! It's calling the function above
-document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
+document.addEventListener('DOMContentLoaded', async () => await mainEvent()); // the async keyword means we can make API requests

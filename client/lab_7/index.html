@@ -10,11 +10,11 @@
 
 <body>
     <div class='heading'>
-        <h1>Maxim Galkin Lab 789</h1>
+        <h1>Maxim Galkin Lab 7</h1>
     </div>
     <div class='container'>
         <header>
-            <form action='https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json' method='get' class='speaker-form'>
+            <form class='main_form'> <!-- change form css -->
                 <div class='form-row'>
                     <label for='full-name'>First Name</label>
                     <input id='full-name' name='full-name' type='text' />
@@ -22,7 +22,7 @@
 
                 <div class='form-row'>
                     <label for='food-preference'>Food Preference</label>
-                    <input id='ood-preference' name='ood-preference' type='text' />
+                    <input id='food-preference' name='food-preference' type='text' />
                 </div>
 
                 <fieldset class='legacy-form-row'>
@@ -41,7 +41,7 @@
             </form>
             <div class='future'>
                 <h2>Restaurant List</h2>
-                <ul class='resto-list'></ul>
+                <ul id='resto-list'></ul>
             </div>
         </header>
     </div>

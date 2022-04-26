@@ -25,7 +25,8 @@
     max-width: 960px;
     margin-top: 25px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    
     
   }
   
@@ -41,24 +42,25 @@
   }
   
   .future {
-    background-color: #F6F7F8;
+    background-color: #b3b9c0;
     border: 1px solid #D6D9DC;
     border-radius: 3px;
     
     width: 80%;
-    height: 20%;
+    height: fit-content;
     align-items: center;
     padding: 50px;
     margin-left: 50px;
     margin-right: 50px;
-    display: flex;
+    text-align: center;
+
   }
-  .speaker-form {
+  .main_form {
     background-color: #F6F7F8;
     border: 1px solid #D6D9DC;
     border-radius: 3px;
     
-    width: 80%;
+    width: 400px;
     padding: 50px;
     margin: 0 0 40px 0;
   }
@@ -124,6 +126,8 @@
   
     padding: 10px 40px;
     cursor: pointer;
+
+    justify-content: center;
   }
   
   .form-row button:hover {
@@ -137,7 +141,6 @@
   .container header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-left: 50px;
     margin-right: 50px;
     
