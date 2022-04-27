@@ -28,7 +28,7 @@ function createHtmlList(collection) {
   });
 }
 function initMap(targetId) {
-  const latLong = [38.7849, 76.8721];
+  const latLong = [38.7849, -76.8721];
   const map = L.map(targetId).setView(latLong, 17);
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -39,6 +39,14 @@ function initMap(targetId) {
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
   }).addTo(map);
   return map;
+}
+
+function addMapMarkers(map, collection) {
+  collection.forEach((item) => {
+    const point = item.geocoded_column_1?.coordinates;
+    console.log(item.geocoded_column_1?.coordinates);
+    L.marker([point[1], point[0]]).addTo(map);
+  });
 }
 async function mainEvent() { // the async keyword means we can make API requests
   console.log('script loaded');
@@ -59,8 +67,8 @@ async function mainEvent() { // the async keyword means we can make API requests
     localStorage.setItem('restaurants', JSON.stringify(arrayFromJson));
   }
 
-  const storedData = localStorage.getItem('restaurants');
-  // const storedDataArray = JSON.parse(storedData);
+  const storedDataString = localStorage.getItem('restaurants');
+  const storedData = JSON.parse(storedDataString);
   console.log(storedData);
 
   // const arrayFromJson = {data: []}; // TODO remove debug tool
@@ -74,16 +82,18 @@ async function mainEvent() { // the async keyword means we can make API requests
       // console.table(arrayFromJson.data); // this is called "dot notation"
       // arrayFromJson.data - we're accessing a key called 'data' on the returned object
       // it contains all 1,000 records we need
-      restoArray = dataHandler(arrayFromJson);
+      restoArray = dataHandler(storedData);
       createHtmlList(restoArray);
+      addMapMarkers(map, restoArray);
     });
     restName.addEventListener('change', async() => {
-      filterData = restoArray.filter((item) => item.name.toLowerCase().includes(restName.value.toLowerCase()));
+      filterData = storedData.filter((item) => item.name.toLowerCase().includes(restName.value.toLowerCase()));
       createHtmlList(filterData);
     });
     cityName.addEventListener('change', async() => {
-      filterData = restoArray.filter((item) => item.city.toLowerCase().includes(cityName.value.toLowerCase()));
+      filterData = storedData.filter((item) => item.city.toLowerCase().includes(cityName.value.toLowerCase()));
       createHtmlList(filterData);
+
     });
   }
 }
